@@ -1,0 +1,192 @@
+/*
+ * nature.css_t
+ * ~~~~~~~~~~~~
+ *
+ * Sphinx stylesheet -- nature theme.
+ *
+ * :copyright: Copyright 2007-2010 by the Sphinx team, see AUTHORS.
+ * :license: BSD, see LICENSE for details.
+ *
+ */
+ 
+/* -- page layout ----------------------------------------------------------- */
+ 
+.openerp div.oe_form_embedded_html {
+    font-family: Arial, sans-serif;
+    font-size: 100%;
+    /*background-color: #111;*/
+    color: #555;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #3E4349;
+    padding: 0 30px 30px 30px;
+    font-size: 0.9em;
+}
+
+.openerp div.oe_form_embedded_html div.documentwrapper {
+ 
+    float: left;
+    width: 100%;
+}
+
+.openerp div.oe_form_embedded_html div.bodywrapper {
+    margin: 0 0 0 230px;
+}
+
+.openerp div.oe_form_embedded_html hr {
+    border: 1px solid #B1B4B6;
+}
+ 
+.openerp div.oe_form_embedded_html div.related {
+    background-color: #6BA81E;
+    line-height: 32px;
+    color: #fff;
+    text-shadow: 0px 1px 0 #444;
+    font-size: 0.9em;
+}
+ 
+.openerp div.oe_form_embedded_html div.related a {
+    color: #E2F3CC;
+}
+ 
+/* -- body styles ----------------------------------------------------------- */
+ 
+.openerp div.oe_form_embedded_html a {
+    color: #005B81;
+    text-decoration: none;
+}
+ 
+.openerp div.oe_form_embedded_html a:hover {
+    color: #E32E00;
+    text-decoration: underline;
+}
+ 
+.openerp div.oe_form_embedded_html h1,
+.openerp div.oe_form_embedded_html h2,
+.openerp div.oe_form_embedded_html h3,
+.openerp div.oe_form_embedded_html h4,
+.openerp div.oe_form_embedded_html h5,
+.openerp div.oe_form_embedded_html h6 {
+    font-family: Arial, sans-serif;
+    background-color: #BED4EB;
+    font-weight: normal;
+    color: #212224;
+    margin: 30px 0px 10px 0px;
+    padding: 5px 0 5px 10px;
+    text-shadow: 0px 1px 0 white
+}
+ 
+.openerp div.oe_form_embedded_html h1 { border-top: 20px solid white; margin-top: 0; font-size: 200%; }
+.openerp div.oe_form_embedded_html h2 { font-size: 150%; background-color: #C8D5E3; }
+.openerp div.oe_form_embedded_html h3 { font-size: 120%; background-color: #D8DEE3; }
+.openerp div.oe_form_embedded_html h4 { font-size: 110%; background-color: #D8DEE3; }
+.openerp div.oe_form_embedded_html h5 { font-size: 100%; background-color: #D8DEE3; }
+.openerp div.oe_form_embedded_html h6 { font-size: 100%; background-color: #D8DEE3; }
+ 
+.openerp div.oe_form_embedded_html a.headerlink {
+    color: #c60f0f;
+    font-size: 0.8em;
+    padding: 0 4px 0 4px;
+    text-decoration: none;
+}
+ 
+.openerp div.oe_form_embedded_html a.headerlink:hover {
+    background-color: #c60f0f;
+    color: white;
+}
+ 
+.openerp div.oe_form_embedded_html p, 
+.openerp div.oe_form_embedded_html dd, 
+.openerp div.oe_form_embedded_html li {
+    line-height: 1.5em;
+}
+ 
+.openerp div.oe_form_embedded_html div.admonition p.admonition-title + p {
+    display: inline;
+}
+
+.openerp div.oe_form_embedded_html div.highlight{
+    background-color: white;
+}
+
+.openerp div.oe_form_embedded_html div.note {
+    background-color: #eee;
+    border: 1px solid #ccc;
+}
+ 
+.openerp div.oe_form_embedded_html div.seealso {
+    background-color: #ffc;
+    border: 1px solid #ff6;
+}
+ 
+.openerp div.oe_form_embedded_html div.topic {
+    background-color: #eee;
+}
+ 
+.openerp div.oe_form_embedded_html div.warning {
+    background-color: #ffe4e4;
+    border: 1px solid #f66;
+}
+ 
+.openerp div.oe_form_embedded_html p.admonition-title {
+    display: inline;
+}
+ 
+.openerp div.oe_form_embedded_html p.admonition-title:after {
+    content: ":";
+}
+ 
+.openerp div.oe_form_embedded_html pre {
+    padding: 10px;
+    background-color: White;
+    color: #222;
+    line-height: 1.2em;
+    border: 1px solid #C6C9CB;
+    font-size: 1.1em;
+    margin: 1.5em 0 1.5em 0;
+    -webkit-box-shadow: 1px 1px 1px #d8d8d8;
+    -moz-box-shadow: 1px 1px 1px #d8d8d8;
+}
+ 
+.openerp div.oe_form_embedded_html tt {
+    background-color: #ecf0f3;
+    color: #222;
+    /* padding: 1px 2px; */
+    font-size: 1.1em;
+    font-family: monospace;
+}
+
+.openerp div.oe_form_embedded_html .viewcode-back {
+    font-family: Arial, sans-serif;
+}
+
+.openerp div.oe_form_embedded_html div.viewcode-block:target {
+    background-color: #f4debf;
+    border-top: 1px solid #ac9;
+    border-bottom: 1px solid #ac9;
+}
+
+.openerp div.oe_form_embedded_html p {
+	margin: 0;
+}
+
+.openerp div.oe_form_embedded_html ul li dd {
+	margin-top: 0;
+}
+
+.openerp div.oe_form_embedded_html ul li dl {
+	margin-bottom: 0;
+}
+
+.openerp div.oe_form_embedded_html li dl dd {
+	margin-bottom: 0;
+}
+
+.openerp div.oe_form_embedded_html dd ul {
+	padding-left: 0;
+}
+
+.openerp div.oe_form_embedded_html li dd ul {
+	margin-bottom: 0;
+}

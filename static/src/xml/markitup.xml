@@ -20,9 +20,9 @@
   </t>
 
   <t t-name="FieldTextRst2HtmlReadOnly">
-    <iframe t-att-class="'oe_form_field oe_form_field_html' + (widget.get('effective_readonly') ? ' oe_form_embedded_html' : '')"
+    <div t-att-class="'oe_form_field oe_form_field_html' + (widget.get('effective_readonly') ? ' oe_form_embedded_html' : '')"
             t-att-style="widget.node.attrs.style">
-    </iframe>
+    </div>
   </t>
 
 </templates>

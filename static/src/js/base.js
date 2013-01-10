@@ -23,32 +23,8 @@ openerp.web_markitup = function (oe) {
     oe.web_markitup.FieldTextRst2HtmlReadOnly = oe.web.form.FieldTextHtml.extend({
         template: 'FieldTextRst2HtmlReadOnly',
 
-        // From "Andrey Rublev" excellent "rsted"
-        // https://github.com/anru/rsted
         _set_preview_html: function(html) {
-            var iframe = this.$el[0];
-            var doc = iframe.document;
-
-            if (iframe.contentDocument) {
-                doc = iframe.contentDocument; // For NS6
-            } else if (iframe.contentWindow) {
-                doc = iframe.contentWindow.document; // For IE5.5 and IE6
-            }
-            doc.open();
-            doc.writeln(html);
-            doc.close();
-            var body = doc.body;
-
-            var titleText = null;
-            var headElem = $('h1', body)[0] || $('h2', body)[0] || $('h3', body)[0] || $('h4', body)[0] || $('h5', body)[0] || $('p', body)[0];
-            if (headElem) {
-                titleText = headElem.innerText || headElem.textContent;
-            }
-            if (titleText) {
-                $('head title').html(titleText.substr(0, 55) + ' - ' + window.baseTitle);
-            } else {
-                $('head title').html(window.baseTitle);
-            }
+            this.$el.html(html);
         },
 
         render_value: function() {

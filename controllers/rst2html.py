@@ -11,9 +11,16 @@ from docutils.core import publish_string
 
 # see http://docutils.sourceforge.net/docs/user/config.html
 default_rst_opts = {
+    # 'doctype_declaration': False, 
+    # 'xml_declaration': False,
+    # 'title': False,
+    # 'no_doc_title': False,
+    'no_toc_backlink': True,
     'no_generator': True,
+    'no_footnote_backlink': True,
     'no_source_link': True,
     'tab_width': 4,
+    'initial_header_level': 2,  ## Title is header level 1.
     'file_insertion_enabled': False,
     'raw_enabled': False,
     'stylesheet_path': None,
@@ -25,6 +32,20 @@ default_rst_opts = {
 ##
 ##
 def rst2html(rst, theme=None, opts=None):
+    r"""Render rst string and returns the HTML rendered string
+
+    Quite straitghtforward at first view:
+
+        >>> rst = '=====\nTitle\n=====\n\ntest\n====\ntext'
+        >>> print rst2html(rst).strip() # doctest: +ELLIPSIS
+        <h1...>Title</h1>
+        <h2...>test</h2>
+        <p>text</p>
+
+    Notice how this is HTML part that must be included in a complete
+    HTML document.
+
+    """
     rst_opts = default_rst_opts.copy()
     if opts:
         rst_opts.update(opts)
@@ -40,3 +61,5 @@ def rst2html(rst, theme=None, opts=None):
     out = publish_string(rst, writer_name='html', settings_overrides=rst_opts)
 
     return out
+
+
