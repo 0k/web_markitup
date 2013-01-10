@@ -12,6 +12,7 @@
            "static/lib/js/markit/jquery.markitup.pack.js", ],
     "css": ["static/lib/js/markit/sets/rest/style.css",
             "static/lib/js/markit/skins/markitup/style.css",
+            "static/src/css/*.css",
             ],
     "qweb": ["static/src/xml/*.xml",
              ],

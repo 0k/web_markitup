@@ -59,6 +59,7 @@ openerp.web_markitup = function (oe) {
                 // XXXvlab: put a loading symbol
                 this.rpc('/web_markitup/rst2html', {
                     'source': this.get('value'),
+                    'theme': 'nature',
                 }).then(function(html_content) {
                     self._set_preview_html(html_content);
                 });
