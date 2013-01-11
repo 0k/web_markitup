@@ -54,6 +54,8 @@ openerp.web_markitup = function (oe) {
         init: function (field_manager, node) {
             this._super(field_manager, node);
             this.$txt = false;
+
+            this.old_value = null;
         },
 
         _get_raw_value: function() {
@@ -62,9 +64,31 @@ openerp.web_markitup = function (oe) {
             return this.$txt.val();
         },
 
+        _set_preview_html: function(html) {
+            this.$preview.html(html);
+        },
+
+        _gen_preview_html: function() {
+            // XXXvlab: put a loading symbol
+            var self = this;
+            var value = this._get_raw_value();
+            if (_.isEqual(value, this.old_value)) return;
+            this.old_value = value;
+
+            this.rpc('/web_markitup/rst2html', {
+                'source': this._get_raw_value(),
+            }).then(function(html_content) {
+                self._set_preview_html(html_content);
+            });
+        },
+
         initialize_content: function() {
+            var self = this;
             this.$txt = this.$el.find('textarea[name="' + this.name + '"]');
+            this.$preview = this.$el.find('div.oe_form_field_markitup_preview');
             this.setupFocus(this.$txt);
+            // this.field_manager.on("view_content_has_changed", this, this._gen_preview_html);
+
         },
 
         store_dom_value: function () {
@@ -82,11 +106,32 @@ openerp.web_markitup = function (oe) {
             return this._super();
         },
 
+        sync_scroll_position: function () {
+
+            var editorScrollRange = (this.$txt[0].scrollHeight - this.$txt.innerHeight());
+            var previewScrollRange = (this.$preview[0].scrollHeight - this.$preview.innerHeight());
+
+            // Find how far along the editor is (0 means it is scrolled to the top, 1
+            // means it is at the bottom).
+            var scrollFactor = this.$txt.scrollTop() / editorScrollRange;
+
+            // Set the scroll position of the preview pane to match.  jQuery will
+            // gracefully handle out-of-bounds values.
+            this.$preview.scrollTop(scrollFactor * previewScrollRange);
+        },
+
         render_value: function() {
             var show_value = this.format_value(this.get('value'), '');
+            var self = this;
             if (!this.get("effective_readonly")) {
                 this.$txt.val(show_value);
                 this.$txt.markItUp(mySettings);
+                this.$txt.scroll(function() {self.sync_scroll_position();});
+
+                this.$txt.bind('change keyup', function() {
+                    self._gen_preview_html();
+                });
+                this._gen_preview_html();
             } else {
                 // XXXvlab: does nothing
                 //this.$(".oe_form_char_content").text('<pre>' + show_value + '</pre>');

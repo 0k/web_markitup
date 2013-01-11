@@ -12,14 +12,13 @@
 	text-decoration:none;
 }
 .markItUp  {
-	width:700px;
 	margin:5px 0 5px 0;
-	border:5px solid #F5F5F5;
+	border:0px solid #F5F5F5;
 }
 .markItUpContainer  {
-	border:1px solid #3C769D;	
+	border:0px solid #3C769D;	
 	background:#FFF url(images/bg-container.png) repeat-x top left;
-	padding:5px 5px 2px 5px;
+	padding:0px 0px 2px 0px;
 	font:11px Verdana, Arial, Helvetica, sans-serif;
 }
 .markItUpEditor {

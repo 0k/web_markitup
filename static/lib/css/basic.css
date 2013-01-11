@@ -11,32 +11,32 @@
 
 /* -- main layout ----------------------------------------------------------- */
 
-.openerp div.oe_form_embedded_html div.clearer {
+.openerp div.oe_form_field_rst2html_readonly div.clearer {
     clear: both;
 }
 
 /* -- relbar ---------------------------------------------------------------- */
 
-.openerp div.oe_form_embedded_html div.related {
+.openerp div.oe_form_field_rst2html_readonly div.related {
     width: 100%;
     font-size: 90%;
 }
 
-.openerp div.oe_form_embedded_html div.related h3 {
+.openerp div.oe_form_field_rst2html_readonly div.related h3 {
     display: none;
 }
 
-.openerp div.oe_form_embedded_html  div.related ul {
+.openerp div.oe_form_field_rst2html_readonly  div.related ul {
     margin: 0;
     padding: 0 0 0 10px;
     list-style: none;
 }
 
-.openerp div.oe_form_embedded_html div.related li {
+.openerp div.oe_form_field_rst2html_readonly div.related li {
     display: inline;
 }
 
-.openerp div.oe_form_embedded_html div.related li.right {
+.openerp div.oe_form_field_rst2html_readonly div.related li.right {
     float: right;
     margin-right: 5px;
 }
@@ -45,19 +45,19 @@
 
 /* -- index page ------------------------------------------------------------ */
 
-.openerp div.oe_form_embedded_html table.contentstable {
+.openerp div.oe_form_field_rst2html_readonly table.contentstable {
     width: 90%;
 }
 
-.openerp div.oe_form_embedded_html table.contentstable p.biglink {
+.openerp div.oe_form_field_rst2html_readonly table.contentstable p.biglink {
     line-height: 150%;
 }
 
-.openerp div.oe_form_embedded_html a.biglink {
+.openerp div.oe_form_field_rst2html_readonly a.biglink {
     font-size: 1.3em;
 }
 
-.openerp div.oe_form_embedded_html span.linkdescr {
+.openerp div.oe_form_field_rst2html_readonly span.linkdescr {
     font-style: italic;
     padding-top: 5px;
     font-size: 90%;
@@ -65,43 +65,43 @@
 
 /* -- general index --------------------------------------------------------- */
 
-.openerp div.oe_form_embedded_html table.indextable {
+.openerp div.oe_form_field_rst2html_readonly table.indextable {
     width: 100%;
 }
 
-.openerp div.oe_form_embedded_html table.indextable td {
+.openerp div.oe_form_field_rst2html_readonly table.indextable td {
     text-align: left;
     vertical-align: top;
 }
 
-.openerp div.oe_form_embedded_html table.indextable dl, table.indextable dd {
+.openerp div.oe_form_field_rst2html_readonly table.indextable dl, table.indextable dd {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.openerp div.oe_form_embedded_html table.indextable tr.pcap {
+.openerp div.oe_form_field_rst2html_readonly table.indextable tr.pcap {
     height: 10px;
 }
 
-.openerp div.oe_form_embedded_html table.indextable tr.cap {
+.openerp div.oe_form_field_rst2html_readonly table.indextable tr.cap {
     margin-top: 10px;
     background-color: #f2f2f2;
 }
 
-.openerp div.oe_form_embedded_html img.toggler {
+.openerp div.oe_form_field_rst2html_readonly img.toggler {
     margin-right: 3px;
     margin-top: 3px;
     cursor: pointer;
 }
 
-.openerp div.oe_form_embedded_html div.modindex-jumpbox {
+.openerp div.oe_form_field_rst2html_readonly div.modindex-jumpbox {
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     margin: 1em 0 1em 0;
     padding: 0.4em;
 }
 
-.openerp div.oe_form_embedded_html div.genindex-jumpbox {
+.openerp div.oe_form_field_rst2html_readonly div.genindex-jumpbox {
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     margin: 1em 0 1em 0;
@@ -110,68 +110,68 @@
 
 /* -- general body styles --------------------------------------------------- */
 
-.openerp div.oe_form_embedded_html a.headerlink {
+.openerp div.oe_form_field_rst2html_readonly a.headerlink {
     visibility: hidden;
 }
 
-.openerp div.oe_form_embedded_html h1:hover > a.headerlink,
-.openerp div.oe_form_embedded_html h2:hover > a.headerlink,
-.openerp div.oe_form_embedded_html h3:hover > a.headerlink,
-.openerp div.oe_form_embedded_html h4:hover > a.headerlink,
-.openerp div.oe_form_embedded_html h5:hover > a.headerlink,
-.openerp div.oe_form_embedded_html h6:hover > a.headerlink,
-.openerp div.oe_form_embedded_html dt:hover > a.headerlink {
+.openerp div.oe_form_field_rst2html_readonly h1:hover > a.headerlink,
+.openerp div.oe_form_field_rst2html_readonly h2:hover > a.headerlink,
+.openerp div.oe_form_field_rst2html_readonly h3:hover > a.headerlink,
+.openerp div.oe_form_field_rst2html_readonly h4:hover > a.headerlink,
+.openerp div.oe_form_field_rst2html_readonly h5:hover > a.headerlink,
+.openerp div.oe_form_field_rst2html_readonly h6:hover > a.headerlink,
+.openerp div.oe_form_field_rst2html_readonly dt:hover > a.headerlink {
     visibility: visible;
 }
 
-.openerp div.oe_form_embedded_html div.body p.caption {
+.openerp div.oe_form_field_rst2html_readonly div.body p.caption {
     text-align: inherit;
 }
 
-.openerp div.oe_form_embedded_html div.body td {
+.openerp div.oe_form_field_rst2html_readonly div.body td {
     text-align: left;
 }
 
-.openerp div.oe_form_embedded_html .field-list ul {
+.openerp div.oe_form_field_rst2html_readonly .field-list ul {
     padding-left: 1em;
 }
 
-.openerp div.oe_form_embedded_html .first {
+.openerp div.oe_form_field_rst2html_readonly .first {
     margin-top: 0 !important;
 }
 
-.openerp div.oe_form_embedded_html p.rubric {
+.openerp div.oe_form_field_rst2html_readonly p.rubric {
     margin-top: 30px;
     font-weight: bold;
 }
 
-.openerp div.oe_form_embedded_html .align-left {
+.openerp div.oe_form_field_rst2html_readonly .align-left {
     text-align: left;
 }
 
-.openerp div.oe_form_embedded_html .align-center {
+.openerp div.oe_form_field_rst2html_readonly .align-center {
     clear: both;
     text-align: center;
 }
 
-.openerp div.oe_form_embedded_html .align-right {
+.openerp div.oe_form_field_rst2html_readonly .align-right {
     text-align: right;
 }
 
 
-.openerp div.oe_form_embedded_html p.centered {
+.openerp div.oe_form_field_rst2html_readonly p.centered {
     text-align: center;
     margin-top: 25px;
 }
 
 /* -- tables ---------------------------------------------------------------- */
 
-.openerp div.oe_form_embedded_html table.docutils {
+.openerp div.oe_form_field_rst2html_readonly table.docutils {
     border: 0;
     border-collapse: collapse;
 }
 
-.openerp div.oe_form_embedded_html table.docutils td, table.docutils th {
+.openerp div.oe_form_field_rst2html_readonly table.docutils td, table.docutils th {
     padding: 1px 8px 1px 5px;
     border-top: 0;
     border-left: 0;
@@ -179,206 +179,206 @@
     border-bottom: 1px solid #aaa;
 }
 
-.openerp div.oe_form_embedded_html table.field-list td, table.field-list th {
+.openerp div.oe_form_field_rst2html_readonly table.field-list td, table.field-list th {
     border: 0 !important;
 }
 
-.openerp div.oe_form_embedded_html table.footnote td, table.footnote th {
+.openerp div.oe_form_field_rst2html_readonly table.footnote td, table.footnote th {
     border: 0 !important;
 }
 
-.openerp div.oe_form_embedded_html th {
+.openerp div.oe_form_field_rst2html_readonly th {
     text-align: left;
     padding-right: 5px;
 }
 
-.openerp div.oe_form_embedded_html table.citation {
+.openerp div.oe_form_field_rst2html_readonly table.citation {
     border-left: solid 1px gray;
     margin-left: 1px;
 }
 
-.openerp div.oe_form_embedded_html table.citation td {
+.openerp div.oe_form_field_rst2html_readonly table.citation td {
     border-bottom: none;
 }
 
 /* -- other body styles ----------------------------------------------------- */
 
-.openerp div.oe_form_embedded_html ol.arabic {
+.openerp div.oe_form_field_rst2html_readonly ol.arabic {
     list-style: decimal;
 }
 
-.openerp div.oe_form_embedded_html ol.loweralpha {
+.openerp div.oe_form_field_rst2html_readonly ol.loweralpha {
     list-style: lower-alpha;
 }
 
-.openerp div.oe_form_embedded_html ol.upperalpha {
+.openerp div.oe_form_field_rst2html_readonly ol.upperalpha {
     list-style: upper-alpha;
 }
 
-.openerp div.oe_form_embedded_html ol.lowerroman {
+.openerp div.oe_form_field_rst2html_readonly ol.lowerroman {
     list-style: lower-roman;
 }
 
-.openerp div.oe_form_embedded_html ol.upperroman {
+.openerp div.oe_form_field_rst2html_readonly ol.upperroman {
     list-style: upper-roman;
 }
 
-.openerp div.oe_form_embedded_html dl {
+.openerp div.oe_form_field_rst2html_readonly dl {
     margin-bottom: 15px;
 }
 
-.openerp div.oe_form_embedded_html dd p {
+.openerp div.oe_form_field_rst2html_readonly dd p {
     margin-top: 0px;
 }
 
-.openerp div.oe_form_embedded_html dd ul, 
-.openerp div.oe_form_embedded_html dd table {
+.openerp div.oe_form_field_rst2html_readonly dd ul, 
+.openerp div.oe_form_field_rst2html_readonly dd table {
     margin-bottom: 10px;
 }
 
-.openerp div.oe_form_embedded_html dd {
+.openerp div.oe_form_field_rst2html_readonly dd {
     margin-top: 3px;
     margin-bottom: 10px;
     margin-left: 30px;
 }
 
-.openerp div.oe_form_embedded_html dt:target, 
-.openerp div.oe_form_embedded_html .highlighted {
+.openerp div.oe_form_field_rst2html_readonly dt:target, 
+.openerp div.oe_form_field_rst2html_readonly .highlighted {
     background-color: #fbe54e;
 }
 
-.openerp div.oe_form_embedded_html dl.glossary dt {
+.openerp div.oe_form_field_rst2html_readonly dl.glossary dt {
     font-weight: bold;
     font-size: 1.1em;
 }
 
-.openerp div.oe_form_embedded_html .field-list ul {
+.openerp div.oe_form_field_rst2html_readonly .field-list ul {
     margin: 0;
     padding-left: 1em;
 }
 
-.openerp div.oe_form_embedded_html .field-list p {
+.openerp div.oe_form_field_rst2html_readonly .field-list p {
     margin: 0;
 }
 
-.openerp div.oe_form_embedded_html .refcount {
+.openerp div.oe_form_field_rst2html_readonly .refcount {
     color: #060;
 }
 
-.openerp div.oe_form_embedded_html .optional {
+.openerp div.oe_form_field_rst2html_readonly .optional {
     font-size: 1.3em;
 }
 
-.openerp div.oe_form_embedded_html .versionmodified {
+.openerp div.oe_form_field_rst2html_readonly .versionmodified {
     font-style: italic;
 }
 
-.openerp div.oe_form_embedded_html .system-message {
+.openerp div.oe_form_field_rst2html_readonly .system-message {
     background-color: #fda;
     padding: 5px;
     border: 3px solid red;
 }
 
-.openerp div.oe_form_embedded_html .footnote:target  {
+.openerp div.oe_form_field_rst2html_readonly .footnote:target  {
     background-color: #ffa
 }
 
-.openerp div.oe_form_embedded_html .line-block {
+.openerp div.oe_form_field_rst2html_readonly .line-block {
     display: block;
     margin-top: 1em;
     margin-bottom: 1em;
 }
 
-.openerp div.oe_form_embedded_html .line-block .line-block {
+.openerp div.oe_form_field_rst2html_readonly .line-block .line-block {
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 1.5em;
 }
 
-.openerp div.oe_form_embedded_html .guilabel,
-.openerp div.oe_form_embedded_html .menuselection {
+.openerp div.oe_form_field_rst2html_readonly .guilabel,
+.openerp div.oe_form_field_rst2html_readonly .menuselection {
     font-family: sans-serif;
 }
 
-.openerp div.oe_form_embedded_html .accelerator {
+.openerp div.oe_form_field_rst2html_readonly .accelerator {
     text-decoration: underline;
 }
 
-.openerp div.oe_form_embedded_html .classifier {
+.openerp div.oe_form_field_rst2html_readonly .classifier {
     font-style: oblique;
 }
 
 /* -- code displays --------------------------------------------------------- */
 
-.openerp div.oe_form_embedded_html pre {
+.openerp div.oe_form_field_rst2html_readonly pre {
     overflow: auto;
 }
 
-.openerp div.oe_form_embedded_html td.linenos pre {
+.openerp div.oe_form_field_rst2html_readonly td.linenos pre {
     padding: 5px 0px;
     border: 0;
     background-color: transparent;
     color: #aaa;
 }
 
-.openerp div.oe_form_embedded_html table.highlighttable {
+.openerp div.oe_form_field_rst2html_readonly table.highlighttable {
     margin-left: 0.5em;
 }
 
-.openerp div.oe_form_embedded_html table.highlighttable td {
+.openerp div.oe_form_field_rst2html_readonly table.highlighttable td {
     padding: 0 0.5em 0 0.5em;
 }
 
-.openerp div.oe_form_embedded_html tt.descname {
+.openerp div.oe_form_field_rst2html_readonly tt.descname {
     background-color: transparent;
     font-weight: bold;
     font-size: 1.2em;
 }
 
-.openerp div.oe_form_embedded_html tt.descclassname {
+.openerp div.oe_form_field_rst2html_readonly tt.descclassname {
     background-color: transparent;
 }
 
-.openerp div.oe_form_embedded_html tt.xref,
-.openerp div.oe_form_embedded_html a tt {
+.openerp div.oe_form_field_rst2html_readonly tt.xref,
+.openerp div.oe_form_field_rst2html_readonly a tt {
     background-color: transparent;
     font-weight: bold;
 }
 
-.openerp div.oe_form_embedded_html h1 tt, 
-.openerp div.oe_form_embedded_html h2 tt, 
-.openerp div.oe_form_embedded_html h3 tt, 
-.openerp div.oe_form_embedded_html h4 tt, 
-.openerp div.oe_form_embedded_html h5 tt, 
-.openerp div.oe_form_embedded_html h6 tt {
+.openerp div.oe_form_field_rst2html_readonly h1 tt, 
+.openerp div.oe_form_field_rst2html_readonly h2 tt, 
+.openerp div.oe_form_field_rst2html_readonly h3 tt, 
+.openerp div.oe_form_field_rst2html_readonly h4 tt, 
+.openerp div.oe_form_field_rst2html_readonly h5 tt, 
+.openerp div.oe_form_field_rst2html_readonly h6 tt {
     background-color: transparent;
 }
 
-.openerp div.oe_form_embedded_html .viewcode-link {
+.openerp div.oe_form_field_rst2html_readonly .viewcode-link {
     float: right;
 }
 
-.openerp div.oe_form_embedded_html .viewcode-back {
+.openerp div.oe_form_field_rst2html_readonly .viewcode-back {
     float: right;
     font-family: sans-serif;
 }
 
-.openerp div.oe_form_embedded_html div.viewcode-block:target {
+.openerp div.oe_form_field_rst2html_readonly div.viewcode-block:target {
     margin: -1px -10px;
     padding: 0 10px;
 }
 
 /* -- math display ---------------------------------------------------------- */
 
-.openerp div.oe_form_embedded_html img.math {
+.openerp div.oe_form_field_rst2html_readonly img.math {
     vertical-align: middle;
 }
 
-.openerp div.oe_form_embedded_html div.body div.math p {
+.openerp div.oe_form_field_rst2html_readonly div.body div.math p {
     text-align: center;
 }
 
-.openerp div.oe_form_embedded_html span.eqno {
+.openerp div.oe_form_field_rst2html_readonly span.eqno {
     float: right;
 }
 

@@ -8,3 +8,15 @@
   padding: 1em;
 }
 
+
+
+.openerp div.oe_form_field_rst2html_readonly.oe_form_field_markitup_preview {
+  height: 15em;
+  overflow: auto;
+  margin: 0;
+  box-shadow: none;
+}
+
+.openerp .oe_form .markItUp textarea {
+ height: 15em;
+ }

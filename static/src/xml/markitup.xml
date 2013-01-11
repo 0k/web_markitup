@@ -5,6 +5,8 @@
 
   <t t-name="FieldMarkItUp">
     <div class="oe_form_field oe_form_field_text oe_form_field_markitup" t-att-style="widget.node.attrs.style">
+      <div class="oe_form_field_html oe_form_field_rst2html_readonly oe_form_field_markitup_preview">
+      </div>
       <textarea rows="6"
                 t-att-name="widget.name"
                 class="field_text"
