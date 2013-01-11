@@ -43,7 +43,7 @@ openerp.web_markitup = function (oe) {
         },
     });
 
-    oe.web_markitup.FieldTextMarkitup = oe.web.form.AbstractField.extend(oe.web.form.ReinitializeFieldMixin, {
+    oe.web_markitup.FieldTextMarkitup = oe.web.form.AbstractField.extend({
         template: 'FieldMarkItUp',
         display_name: _lt('Markitup'),
         widget_class: 'oe_form_field_markitup',
@@ -82,12 +82,12 @@ openerp.web_markitup = function (oe) {
             });
         },
 
-        initialize_content: function() {
+        start: function() {
             var self = this;
             this.$txt = this.$el.find('textarea[name="' + this.name + '"]');
             this.$preview = this.$el.find('div.oe_form_field_markitup_preview');
             this.setupFocus(this.$txt);
-            // this.field_manager.on("view_content_has_changed", this, this._gen_preview_html);
+            this._super.apply(this, arguments);
 
         },
 
@@ -123,19 +123,17 @@ openerp.web_markitup = function (oe) {
         render_value: function() {
             var show_value = this.format_value(this.get('value'), '');
             var self = this;
-            if (!this.get("effective_readonly")) {
-                this.$txt.val(show_value);
-                this.$txt.markItUp(mySettings);
-                this.$txt.scroll(function() {self.sync_scroll_position();});
+            this.$txt.val(show_value);
+            this.$txt.scroll(function() {self.sync_scroll_position();});
 
-                this.$txt.bind('change keyup', function() {
-                    self._gen_preview_html();
-                });
-                this._gen_preview_html();
-            } else {
-                // XXXvlab: does nothing
-                //this.$(".oe_form_char_content").text('<pre>' + show_value + '</pre>');
-            }
+            this.$txt.bind('change keyup', function() {
+                self._gen_preview_html();
+            });
+            window.setTimeout(function() {
+                self._gen_preview_html();
+            }, 200);
+            this.$txt.markItUp(mySettings);
+
         },
 
         is_syntax_valid: function() {
