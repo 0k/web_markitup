@@ -79,6 +79,7 @@ openerp.web_markitup = function (oe) {
                 'source': this._get_raw_value(),
             }).then(function(html_content) {
                 self._set_preview_html(html_content);
+                self.sync_scroll_position();
             });
         },
 
