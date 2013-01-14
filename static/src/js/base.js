@@ -1,4 +1,5 @@
-/*global: openerp */
+/*global: openerp,window,QWeb,_,mySettings */
+
 
 openerp.web_markitup = function (oe) {
 
@@ -17,7 +18,7 @@ openerp.web_markitup = function (oe) {
             } else {
                 this.$el.html("<pre>" + this.get('value') + "</pre>");
             }
-        },
+        }
     });
 
     oe.web_markitup.FieldTextRst2HtmlReadOnly = oe.web.form.FieldTextHtml.extend({
@@ -35,12 +36,12 @@ openerp.web_markitup = function (oe) {
                 // XXXvlab: put a loading symbol
                 this.rpc('/web_markitup/rst2html', {
                     'source': this.get('value'),
-                    'theme': 'nature',
+                    'theme': 'nature'
                 }).then(function(html_content) {
                     self._set_preview_html(html_content);
                 });
             }
-        },
+        }
     });
 
     oe.web_markitup.FieldTextMarkitup = oe.web.form.AbstractField.extend({
@@ -48,7 +49,7 @@ openerp.web_markitup = function (oe) {
         display_name: _lt('Markitup'),
         widget_class: 'oe_form_field_markitup',
         events: {
-            'change input': 'store_dom_value',
+            'change input': 'store_dom_value'
         },
 
         init: function (field_manager, node) {
@@ -76,7 +77,7 @@ openerp.web_markitup = function (oe) {
             this.old_value = value;
 
             this.rpc('/web_markitup/rst2html', {
-                'source': this._get_raw_value(),
+                'source': this._get_raw_value()
             }).then(function(html_content) {
                 self._set_preview_html(html_content);
                 self.sync_scroll_position();
@@ -84,18 +85,16 @@ openerp.web_markitup = function (oe) {
         },
 
         start: function() {
-            var self = this;
             this.$txt = this.$el.find('textarea[name="' + this.name + '"]');
             this.$preview = this.$el.find('div.oe_form_field_markitup_preview');
             this.setupFocus(this.$txt);
             this._super.apply(this, arguments);
-
         },
 
         store_dom_value: function () {
-            if (!this.get('effective_readonly')
-                && this._get_raw_value() !== ''
-                && this.is_syntax_valid()) {
+            if (!this.get('effective_readonly') &&
+                this._get_raw_value() !== '' &&
+                this.is_syntax_valid()) {
                 this.internal_set_value(
                     this.parse_value(
                         this._get_raw_value()));
