@@ -12,8 +12,8 @@
            "static/lib/js/markit/jquery.markitup.pack.js", ],
     "css": ["static/lib/js/markit/sets/rest/style.css",
             "static/lib/js/markit/skins/markitup/style.css",
-            "static/lib/css/basic.css",          ## basic Rest HTML css
-            "static/lib/css/nature/nature.css",  ## nature theme
+            "static/src/css/ReST/basic.css",          ## basic Rest HTML css
+            "static/src/css/ReST/nature/nature.css",  ## nature theme
             "static/src/css/*.css",
             ],
     "qweb": ["static/src/xml/*.xml",
