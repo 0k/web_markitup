@@ -49,14 +49,9 @@ def rst2html(rst, theme=None, opts=None):
     rst_opts = default_rst_opts.copy()
     if opts:
         rst_opts.update(opts)
-    rst_opts['template'] = '../themes/template.txt'
-
-    stylesheets = ['basic.css']
-    if theme:
-        stylesheets.append('%s/%s.css' % (theme, theme))
-
-    rst_opts['stylesheet'] = ','.join([J('../themes/', p)
-                                       for p in stylesheets])
+    default_template_name = 'template.txt'
+    rst_opts['template'] = os.path.join(os.path.dirname(__file__),
+                                        default_template_name)
 
     out = publish_string(rst, writer_name='html', settings_overrides=rst_opts)
 
