@@ -1,11 +1,10 @@
 
 .openerp .oe_form div.oe_form_field_rst2html_readonly {
-  border: 1px solid #ddd;
+  border: 0px solid #ddd;
   -moz-box-shadow:    5px 5px 4px 1px #999;
   -webkit-box-shadow: 5px 5px 4px 1px #999;
   box-shadow:         5px 5px 4px 1px #999;
-  margin: 1em;
-  padding: 1em;
+  margin: 0em;
 }
 
 
