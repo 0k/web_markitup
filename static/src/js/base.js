@@ -44,7 +44,9 @@ openerp.web_markitup = function (oe) {
         }
     });
 
-    oe.web_markitup.FieldTextMarkitup = oe.web.form.AbstractField.extend({
+    oe.web_markitup.FieldTextMarkitup = oe.web.form.AbstractField.extend(
+        oe.web.form.ReinitializeFieldMixin, {
+
         template: 'FieldMarkItUp',
         display_name: _lt('Markitup'),
         widget_class: 'oe_form_field_markitup',
@@ -57,6 +59,24 @@ openerp.web_markitup = function (oe) {
             this.$txt = false;
 
             this.old_value = null;
+        },
+
+        initialize_content: function() {
+            // Gets called at each redraw of widget
+            //  - switching between read-only mode and edit mode
+            //  - BUT NOT when switching to next object.
+            var self = this;
+            this.$txt = this.$el.find('textarea[name="' + this.name + '"]');
+            this.$preview = this.$el.find('div.oe_form_field_markitup_preview');
+            this.setupFocus(this.$txt);
+            if (!this.get('effective_readonly')) {
+                this.$txt.scroll(function() {self.sync_scroll_position();});
+                this.$txt.bind('change keyup', function() {
+                    self._gen_preview_html();
+                });
+                this.$txt.markItUp(mySettings);
+            }
+            this.old_value = null; // will trigger a redraw
         },
 
         _get_raw_value: function() {
@@ -82,13 +102,6 @@ openerp.web_markitup = function (oe) {
                 self._set_preview_html(html_content);
                 self.sync_scroll_position();
             });
-        },
-
-        start: function() {
-            this.$txt = this.$el.find('textarea[name="' + this.name + '"]');
-            this.$preview = this.$el.find('div.oe_form_field_markitup_preview');
-            this.setupFocus(this.$txt);
-            this._super.apply(this, arguments);
         },
 
         store_dom_value: function () {
@@ -121,19 +134,20 @@ openerp.web_markitup = function (oe) {
         },
 
         render_value: function() {
+            // Gets called at each redraw/save of widget
+            //  - switching between read-only mode and edit mode
+            //  - when switching to next object.
+
             var show_value = this.format_value(this.get('value'), '');
             var self = this;
-            this.$txt.val(show_value);
-            this.$txt.scroll(function() {self.sync_scroll_position();});
-
-            this.$txt.bind('change keyup', function() {
+            if (!this.get("effective_readonly")) {
+                this.$txt.val(show_value);
                 self._gen_preview_html();
-            });
-            window.setTimeout(function() {
+            } else {
+                // avoids loading markitup...
+                this.$txt.val(show_value);
                 self._gen_preview_html();
-            }, 200);
-            this.$txt.markItUp(mySettings);
-
+            }
         },
 
         is_syntax_valid: function() {
