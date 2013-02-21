@@ -95,9 +95,9 @@ openerp.web_markitup = function (oe) {
             var value = this._get_raw_value();
             if (_.isEqual(value, this.old_value)) return;
             this.old_value = value;
-
+            this.set_value(value); // Triggers store_dom_value and dirty state.
             this.rpc('/web_markitup/rst2html', {
-                'source': this._get_raw_value()
+                'source': value
             }).then(function(html_content) {
                 self._set_preview_html(html_content);
                 self.sync_scroll_position();
@@ -108,6 +108,9 @@ openerp.web_markitup = function (oe) {
             if (!this.get('effective_readonly') &&
                 this._get_raw_value() !== '' &&
                 this.is_syntax_valid()) {
+                // We use internal_set_value because we were called by
+                // ``.commit_value()`` which is called by a ``.set_value()``
+                // itself called because of a ``onchange`` event
                 this.internal_set_value(
                     this.parse_value(
                         this._get_raw_value()));
