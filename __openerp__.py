@@ -9,7 +9,7 @@
     "active": False,
     "js": ["static/src/js/*.js",
            "static/lib/js/markit/sets/rest/set.js",
-           "static/lib/js/markit/jquery.markitup.pack.js", ],
+           "static/lib/js/markit/jquery.markitup.js", ],
     "css": ["static/lib/js/markit/sets/rest/style.css",
             "static/lib/js/markit/skins/markitup/style.css",
             "static/src/css/ReST/basic.css",          ## basic Rest HTML css
