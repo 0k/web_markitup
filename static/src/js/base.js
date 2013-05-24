@@ -61,12 +61,18 @@ openerp.web_markitup = function (oe) {
             this.old_value = null;
         },
 
+        destroy_content: function () {
+            // console.log("MY DESTROY CONTENT");
+            this.$el.trigger('destroy');
+        },
+
         initialize_content: function() {
             // Gets called at each redraw of widget
             //  - switching between read-only mode and edit mode
             //  - BUT NOT when switching to next object.
             var self = this;
             this.$txt = this.$el.find('textarea[name="' + this.name + '"]');
+            this.$preview_pane = this.$el.find('.oe_preview_pane');
             this.$preview = this.$el.find('div.oe_form_field_markitup_preview');
             this.setupFocus(this.$txt);
             if (!this.get('effective_readonly')) {
@@ -74,9 +80,24 @@ openerp.web_markitup = function (oe) {
                 this.$txt.bind('change keyup', function() {
                     self._gen_preview_html();
                 });
-                this.$txt.markItUp(mySettings);
+                this.$txt.markItUp(
+                    $.extend(mySettings, {
+                        resizeHandle: false,
+                    }));
+                this.init_splitter();
             }
             this.old_value = null; // will trigger a redraw
+        },
+
+        init_splitter: function () {
+            // console.log("INIT NEW SPLITTER");
+            return this.$el.splitter({
+                type: "v",
+                dock: "rightDock",
+                minRight: 150,
+                dockSpeed: 400,
+                resizeToWidth: true,
+            });
         },
 
         _get_raw_value: function() {
@@ -90,6 +111,8 @@ openerp.web_markitup = function (oe) {
         },
 
         _gen_preview_html: function() {
+            if (this.$preview_pane.css('display') == "none")
+                return;
             // XXXvlab: put a loading symbol
             var self = this;
             var value = this._get_raw_value();
@@ -125,7 +148,8 @@ openerp.web_markitup = function (oe) {
         sync_scroll_position: function () {
 
             var editorScrollRange = (this.$txt[0].scrollHeight - this.$txt.innerHeight());
-            var previewScrollRange = (this.$preview[0].scrollHeight - this.$preview.innerHeight());
+            var previewScrollRange = (this.$preview_pane[0].scrollHeight -
+                                      this.$preview_pane.innerHeight());
 
             // Find how far along the editor is (0 means it is scrolled to the top, 1
             // means it is at the bottom).
@@ -133,7 +157,7 @@ openerp.web_markitup = function (oe) {
 
             // Set the scroll position of the preview pane to match.  jQuery will
             // gracefully handle out-of-bounds values.
-            this.$preview.scrollTop(scrollFactor * previewScrollRange);
+            this.$preview_pane.scrollTop(scrollFactor * previewScrollRange);
         },
 
         render_value: function() {
@@ -146,6 +170,7 @@ openerp.web_markitup = function (oe) {
             if (!this.get("effective_readonly")) {
                 this.$txt.val(show_value);
                 self._gen_preview_html();
+                this.$el.trigger('resize');
             } else {
                 // avoids loading markitup...
                 this.$txt.val(show_value);

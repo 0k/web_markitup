@@ -6,6 +6,9 @@
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
+ *
+ * Modified by Valentin Lab <valentin.lab@kalysto.org> for web_fullcalendar (2013/05/24)
+ *
  */
 
 /**
@@ -40,6 +43,7 @@
             if ( $(this).is(".splitter") )        // already a splitter
                 return;
             var zombie;                // left-behind splitbar for outline resizes
+            var resizeTimeout = false; // keep memory of if resizeTimeout has been done.
             function setBarState(state) {
                 bar.removeClass(opts.barStateClasses).addClass(state);
             }
@@ -90,6 +94,39 @@
                 $(document)
                     .unbind("mousemove"+opts.eventNamespace+" mouseup"+opts.eventNamespace);
             }
+
+            function resize(size) {
+                // console.log("    resize (" + opts.eventNamespace + ")");
+
+                // Determine new width/height of splitter container
+                splitter._DF = splitter[0][opts.pxFixed] - splitter._PBF;
+                splitter._DA = splitter[0][opts.pxSplit] - splitter._PBA;
+
+                // Bail if splitter isn't visible or content isn't there yet
+                // console.log('      size: ' + splitter._DA);
+                if (splitter._DA <= 0 || splitter._DF <= 0) {
+                    // console.log('      !! No size ');
+                    if (!resizeTimeout) { // avoid looping on setTimeout
+                        // console.log('      ask for new resize');
+                        setTimeout(function() {
+                            // asks to be resized after all is done.
+                            // console.log('  resize on timeout');
+                            resize();
+                        }, 0);
+                        resizeTimeout = true; // avoid
+                    } else {
+                        // console.log("      DO NOT ask for resize. (already done once)");
+                    }
+
+                    return;
+                }
+                // Re-divvy the adjustable dimension; maintain size of the preferred pane
+                resplit(!isNaN(size)? size : (!(opts.sizeRight||opts.sizeBottom)? A[0][opts.pxSplit] :
+                                              splitter._DA-B[0][opts.pxSplit]-bar._DA));
+                setBarState(opts.barNormalClass);
+                resizeTimeout = false; // new timeout can be called on this instance
+            }
+
             function resplit(pos) {
                 bar._DA = bar[0][opts.pxSplit];                // bar size may change during dock
                 // Constrain new splitbar position to fit pane size and docking limits
@@ -113,9 +150,6 @@
                 A.css(opts.origin, 0).css(opts.split, pos).css(opts.fixed,  splitter._DF);
                 B.css(opts.origin, pos+bar._DA)
                     .css(opts.split, splitter._DA-bar._DA-pos).css(opts.fixed,  splitter._DF);
-                // IE fires resize for us; all others pay cash
-                if ( !$.browser.msie )
-                    panes.trigger("resize");
             }
             function dimSum(jq, dims) {
                 // Opera returns -1 for missing min/max width, turn into 0
@@ -256,8 +290,15 @@
                 }).trigger("resize"+opts.eventNamespace);
             }
             else if ( opts.resizeToWidth && !$.browser.msie ) {
-                $(window).bind("resize"+opts.eventNamespace, function(){
-                    splitter.trigger("resize");
+                var oldWinX, oldWinY;
+                $(window).bind("resize"+opts.eventNamespace, function() {
+                    var newWinX = splitter.width();
+                    var newWinY = splitter.height();
+                    if (newWinX == oldWinX && newWinY == oldWinY) return;
+                    oldWinX = newWinX;
+                    oldWinY = newWinY;
+                    // console.log("  resize on window change (" + opts.eventNamespace + ")");
+                    resize();
                 });
             }
 
@@ -303,6 +344,7 @@
             // Resize event handler; triggered immediately to set initial position
             splitter
                 .bind("destroy"+opts.eventNamespace, function(){
+                    // console.log("  destroy (" + opts.eventNamespace + ")");
                     $([window, document]).unbind(opts.eventNamespace);
                     bar.unbind().remove();
                     panes.removeClass(opts.paneClass);
@@ -314,21 +356,8 @@
                             return this._splitter_style||"";        //TODO: save style
                         });
                     splitter = bar = focuser = panes = A = B = opts = args = null;
-                })
-                .bind("resize"+opts.eventNamespace, function(e, size){
-                    // Custom events bubble in jQuery 1.3; avoid recursion
-                    if ( e.target != this ) return;
-                    // Determine new width/height of splitter container
-                    splitter._DF = splitter[0][opts.pxFixed] - splitter._PBF;
-                    splitter._DA = splitter[0][opts.pxSplit] - splitter._PBA;
-                    // Bail if splitter isn't visible or content isn't there yet
-                    if ( splitter._DF <= 0 || splitter._DA <= 0 ) return;
-                    // Re-divvy the adjustable dimension; maintain size of the preferred pane
-                    resplit(!isNaN(size)? size : (!(opts.sizeRight||opts.sizeBottom)? A[0][opts.pxSplit] :
-                                                  splitter._DA-B[0][opts.pxSplit]-bar._DA));
-                    setBarState(opts.barNormalClass);
-                })
-                .trigger("resize" , [initPos]);
+                });
+            // console.log("  Inited (" + opts.eventNamespace + ")");
         });
     };
 

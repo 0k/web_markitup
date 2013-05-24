@@ -4,9 +4,9 @@
 <templates id="template" xml:space="preserve">
 
   <t t-name="FieldMarkItUp">
-    <div class="oe_form_field oe_form_field_text oe_form_field_markitup" t-att-style="widget.node.attrs.style">
-      <div class="oe_form_field_html oe_form_field_rst2html_readonly oe_form_field_markitup_preview">
-      </div>
+
+    <div t-attf-class="oe_web_markitup_split oe_form_field oe_form_field_text oe_form_field_markitup #{widget.get('effective_readonly')?'web_markitup_read_only':'web_markitup_edit'}" t-att-style="widget.node.attrs.style">
+
       <div class="oe_edit_only">
         <textarea rows="6"
                   t-att-name="widget.name"
@@ -22,6 +22,11 @@
                   height="16"
                   border="0"
                   />
+      </div>
+
+      <div class="oe_preview_pane">
+        <div class="oe_form_field_html oe_form_field_rst2html_readonly oe_form_field_markitup_preview">
+        </div>
       </div>
     </div>
   </t>
