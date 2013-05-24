@@ -8,6 +8,7 @@
     "installable": True,
     "active": False,
     "js": ["static/src/js/*.js",
+           "static/lib/js/splitter/splitter.js",
            "static/lib/js/markit/sets/rest/set.js",
            "static/lib/js/markit/jquery.markitup.js", ],
     "css": ["static/lib/js/markit/sets/rest/style.css",
