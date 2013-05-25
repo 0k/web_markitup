@@ -95,8 +95,8 @@ openerp.web_markitup = function (oe) {
             return this.$el.splitter({
                 type: "v",
                 dock: "rightDock",
-                minRight: 150,
-                dockSpeed: 400,
+                minRight: 250,
+                dockSpeed: 200,
                 resizeToWidth: true,
             });
         },
