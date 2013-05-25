@@ -63,7 +63,8 @@ openerp.web_markitup = function (oe) {
 
         destroy_content: function () {
             // console.log("MY DESTROY CONTENT");
-            this.$el.trigger('destroy');
+            if (this.$el.data('splitter'))
+                this.$el.splitter('destroy');
         },
 
         initialize_content: function() {

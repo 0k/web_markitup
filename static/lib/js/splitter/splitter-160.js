@@ -55,6 +55,8 @@
         if ($(el).is(".splitter"))        // already a splitter
             return;
 
+
+        var self = this;
         var zombie;                // left-behind splitbar for outline resizes
         var resizeTimeout = false; // keep memory of if resizeTimeout has been done.
 
@@ -413,7 +415,7 @@
          * Docking support
          */
 
-        function dock() {
+        this.dock = function () {
             var pw = A[0][opts.pxSplit];
             if ( !pw ) return;
             bar._pos = pw;
@@ -427,9 +429,9 @@
                 resplit(x[opts.origin]);
             });
             splitter.trigger("dock" + opts.eventNamespace);
-        }
+        };
 
-        function undock() {
+        this.undock = function () {
             var pw = opts.dockPane[0][opts.pxSplit];
             if ( pw ) return;
             var x={}; x[opts.origin]=bar._pos+"px";
@@ -441,30 +443,31 @@
                              bar._pos = null;
                          });
             splitter.trigger("undock" + opts.eventNamespace);
-        }
+        };
 
-        function toggleDock() {
+        this.toggleDock = function () {
             var pw = opts.dockPane[0][opts.pxSplit];
             if (pw) {
-                dock();
+                self.dock();
             } else {
-                undock();
+                self.undock();
             }
             splitter.trigger("toggleDock" + opts.eventNamespace);
-        }
+        };
 
         // Docking support
         if (opts.dock) {
 
             bar.bind("dblclick", function() {
-                toggleDock();
+                self.toggleDock();
             });
 
             if (opts.dockKey) {
                 $('<a title="'+opts.splitbarClass+' toggle dock" href="javascript:void(0)"></a>')
                 .attr({accessKey: opts.dockKey, tabIndex: -1}).appendTo(bar)
                 .bind($.browser.opera ? "click" : "focus", function() {
-                    toggleDock(); $(el).blur();
+                    self.toggleDock();
+                    $(el).blur();
                 });
             }
         }
@@ -474,7 +477,7 @@
          * Destruction
          */
 
-        function destroy() {
+        this.destroy = function () {
             // console.log("  destroy (" + opts.eventNamespace + ")");
             $([window, document]).unbind(opts.eventNamespace);
             bar.unbind().remove();
@@ -486,14 +489,11 @@
                 .attr("style", function () {
                     return this._splitter_style || "";        //TODO: save style
                 });
+            splitter.trigger("destroy" + opts.eventNamespace);
             splitter = bar = focuser = panes = A = B = opts = options = null;
-        }
 
-        // Resize event handler; triggered immediately to set initial position
-        splitter
-            .bind("destroy" + opts.eventNamespace, function () {
-                destroy();
-            });
+        };
+
         // console.log("  Inited (" + opts.eventNamespace + ")");
 
     }
