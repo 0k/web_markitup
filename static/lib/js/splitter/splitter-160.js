@@ -80,6 +80,7 @@
             $(document)
                 .bind("mousemove" + opts.eventNamespace, doSplitMouse)
                 .bind("mouseup" + opts.eventNamespace, endSplitMouse);
+            return false; // prevents other events to occur (as text selection).
         }
 
         function doSplitMouse(evt) {
@@ -102,6 +103,7 @@
             } else
                 resplit(pos);
             setBarState(pos === limit ? opts.barActiveClass : opts.barLimitClass);
+            return false;
         }
 
         function endSplitMouse(evt) {
@@ -117,6 +119,7 @@
             $(document)
                 .unbind("mousemove" + opts.eventNamespace + " " +
                         "mouseup" + opts.eventNamespace);
+            return false;
         }
 
         function resize(size) {
