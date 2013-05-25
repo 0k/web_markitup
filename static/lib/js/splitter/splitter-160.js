@@ -499,23 +499,64 @@
     }
 
 
-    /* Attach an instance to DOM element */
+    /**
+     * Plugin Management
+     */
 
     $.fn[PLUGIN_NAME] = function (options) {
 
-        options = options || {};
+        if (typeof options == 'string') {                 // Method Calling
 
-        // Take care of each elements
-        $(this).each(function () {
+            var method_name = options;
+            var args = Array.prototype.slice.call(arguments, 1);
+            var res;
 
-            if ($(this).data(PLUGIN_NAME)) {
-                console.warn("Attached " + PLUGIN_NAME + " plugin twice " +
-                             "on same jQuery object");
+            // take care of multiple elements at once
+            $(this).each(function() {
+                var plugin = $(this).data(PLUGIN_NAME);
+                if (!plugin) {
+                    console.warn(
+                        "Can't call method " + method_name + " of jquery plugin " +
+                            PLUGIN_NAME + " if not previously instanciated " +
+                            "on current element");
+                    return;
+                }
+                if (!$.isFunction(plugin[method_name])) {
+                    console.warn("Method " + method_name + " of jquery plugin " +
+                                 PLUGIN_NAME + " does not exist");
+                    return;
+                }
+
+                var r = plugin[method_name].apply(plugin, args);
+                if (res === undefined) {
+                    res = r;  // Will return the first result.
+                }
+                if (method_name === 'destroy') {
+                    $(this).removeData(PLUGIN_NAME);
+                }
+
+            });
+            if (res !== undefined) {
+                return res;   // Return first result
             }
 
-            $(this).data(PLUGIN_NAME, new Splitter($(this), options));
-        });
-        return $(this);
+        } else {                                          // Instanciation
+
+            options = options || {};
+            // take care of multiple elements at once
+            $(this).each(function () {
+
+                if ($(this).data(PLUGIN_NAME)) {
+                    console.warn("Attached " + PLUGIN_NAME + " plugin twice " +
+                                 "on same jQuery object");
+                }
+
+                $(this).data(PLUGIN_NAME, new Splitter($(this), options));
+            });
+
+        }
+
+        return $(this);  // keep jquery chainability when possible.
     };
 
 })(jQuery);
