@@ -429,24 +429,63 @@
             x[opts.origin] = opts.dockPane == A ? 0 :
                 splitter[0][opts.pxSplit] - splitter._PBA - bar[0][opts.pxSplit];
 
-            bar.animate(x, opts.dockSpeed||1, opts.dockEasing, function() {
-                bar.addClass(opts.barDockedClass);
-                resplit(x[opts.origin]);
-            });
+            if (opts.outline) {
+                bar.animate(x, opts.dockSpeed || 1, opts.dockEasing, function() {
+                    // bar.addClass(opts.barDockedClass);
+                    resplit(x[opts.origin]);
+                });
+            } else {
+                x[opts.origin] = opts.dockPane == A ? A._min :
+                    splitter[0][opts.pxSplit] - splitter._PBA - bar[0][opts.pxSplit] -
+                    B._min;
+
+                var preserve_pos = bar._pos;
+                bar.animate(x, {
+                    duration: opts.dockSpeed || 1,
+                    easing: opts.dockEasing,
+                    step: resplit,
+                    complete: function() {
+                        resplit(opts.dockPane == A ? 0 :
+                                splitter[0][opts.pxSplit] - splitter._PBA -
+                                bar[0][opts.pxSplit]);
+                        bar._pos = preserve_pos;
+                        bar.addClass(opts.barDockedClass);
+                    }
+                });
+            }
             splitter.trigger("dock" + opts.eventNamespace);
         };
 
         this.undock = function () {
             var pw = opts.dockPane[0][opts.pxSplit];
-            if ( pw ) return;
-            var x={}; x[opts.origin]=bar._pos+"px";
-            bar.removeClass(opts.barDockedClass)
-                .animate(x,
-                         opts.undockSpeed || opts.dockSpeed || 1,
-                         opts.undockEasing || opts.dockEasing, function() {
-                             resplit(bar._pos);
-                             bar._pos = null;
-                         });
+            if (pw) return;
+
+            var x = {};
+            x[opts.origin] = bar._pos + "px";
+
+            bar.removeClass(opts.barDockedClass);
+
+            if (opts.outline) {
+                bar.animate(x,
+                             opts.undockSpeed || opts.dockSpeed || 1,
+                             opts.undockEasing || opts.dockEasing, function() {
+                                 resplit(bar._pos);
+                                 bar._pos = null;
+                             });
+            } else {
+                var min_pos = opts.dockPane == A ? A._min :
+                    splitter[0][opts.pxSplit] - splitter._PBA - bar[0][opts.pxSplit] -
+                    B._min;
+                resplit(min_pos);
+                bar.animate(x, {
+                    duration: opts.undockSpeed || opts.dockSpeed || 1,
+                    easing: opts.undockEasing || opts.dockEasing,
+                    step: resplit,
+                    complete: function() {
+                        bar._pos = null;
+                    }
+                });
+            }
             splitter.trigger("undock" + opts.eventNamespace);
         };
 
