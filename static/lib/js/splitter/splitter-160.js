@@ -40,8 +40,10 @@
 
     var splitterCounter = 0;
 
-    $.fn.splitter = function (args) {
-        args = args || {};
+    $.fn.splitter = function (options) {
+
+        options = options || {};
+
         return this.each(function () {
 
             if ($(this).is(".splitter"))        // already a splitter
@@ -177,7 +179,7 @@
             }
 
             // Determine settings based on incoming opts, element classes, and defaults
-            var vh = (args.splitHorizontal ? 'h' : args.splitVertical ? 'v' : args.type) || 'v';
+            var vh = (options.splitHorizontal ? 'h' : options.splitVertical ? 'v' : options.type) || 'v';
             var opts = $.extend({
                 // Defaults here allow easy use with ThemeRoller
                 splitterClass:  "splitter ui-widget ui-widget-content",
@@ -204,7 +206,7 @@
                     barStateClass: "splitter-bar-horizontal",
                     barDockedClass: "splitter-bar-horizontal-docked"
                 }
-            }[vh], args, {
+            }[vh], options, {
                 // user cannot override
                 v: {                              // Vertical splitters:
                     type: 'v', eventPos: "pageX", origin: "left",
@@ -477,7 +479,7 @@
                     .attr("style", function(el){
                         return this._splitter_style||"";        //TODO: save style
                     });
-                splitter = bar = focuser = panes = A = B = opts = args = null;
+                splitter = bar = focuser = panes = A = B = opts = options = null;
             }
 
             // Resize event handler; triggered immediately to set initial position
