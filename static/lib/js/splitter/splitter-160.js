@@ -461,21 +461,29 @@
             }
 
 
+            /**
+             * Destruction
+             */
+
+            function destroy() {
+                // console.log("  destroy (" + opts.eventNamespace + ")");
+                $([window, document]).unbind(opts.eventNamespace);
+                bar.unbind().remove();
+                panes.removeClass(opts.paneClass);
+                splitter
+                    .removeClass(opts.splitterClass)
+                    .add(panes)
+                    .unbind(opts.eventNamespace)
+                    .attr("style", function(el){
+                        return this._splitter_style||"";        //TODO: save style
+                    });
+                splitter = bar = focuser = panes = A = B = opts = args = null;
+            }
+
             // Resize event handler; triggered immediately to set initial position
             splitter
                 .bind("destroy" + opts.eventNamespace, function () {
-                    // console.log("  destroy (" + opts.eventNamespace + ")");
-                    $([window, document]).unbind(opts.eventNamespace);
-                    bar.unbind().remove();
-                    panes.removeClass(opts.paneClass);
-                    splitter
-                        .removeClass(opts.splitterClass)
-                        .add(panes)
-                        .unbind(opts.eventNamespace)
-                        .attr("style", function () {
-                            return this._splitter_style || "";        //TODO: save style
-                        });
-                    splitter = bar = focuser = panes = A = B = opts = args = null;
+                    destroy();
                 });
             // console.log("  Inited (" + opts.eventNamespace + ")");
         });
