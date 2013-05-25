@@ -156,7 +156,8 @@
         }
 
         function resplit(pos) {
-            bar._DA = bar[0][opts.pxSplit];                // bar size may change during dock
+            bar._DA = bar[0][opts.pxSplit];  // bar size may change during dock
+
             // Constrain new splitbar position to fit pane size and docking limits
             if ((opts.dockPane === A && pos < Math.max(A._min, bar._DA)) ||
                 (opts.dockPane === B && pos > Math.min(pos, A._max, splitter._DA -
@@ -420,10 +421,11 @@
 
         this.dock = function () {
             var pw = A[0][opts.pxSplit];
-            if ( !pw ) return;
-            bar._pos = pw;
-            var x={};
+            if (!pw) return;
 
+            bar._pos = pw;
+
+            var x = {};
             x[opts.origin] = opts.dockPane == A ? 0 :
                 splitter[0][opts.pxSplit] - splitter._PBA - bar[0][opts.pxSplit];
 
