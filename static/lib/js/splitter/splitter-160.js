@@ -400,53 +400,64 @@
 
             }
 
+
+            /**
+             * Docking support
+             */
+
+            function dock() {
+                var pw = A[0][opts.pxSplit];
+                if ( !pw ) return;
+                bar._pos = pw;
+                var x={};
+
+                x[opts.origin] = opts.dockPane == A ? 0 :
+                    splitter[0][opts.pxSplit] - splitter._PBA - bar[0][opts.pxSplit];
+
+                bar.animate(x, opts.dockSpeed||1, opts.dockEasing, function() {
+                    bar.addClass(opts.barDockedClass);
+                    resplit(x[opts.origin]);
+                });
+                splitter.trigger("dock" + opts.eventNamespace);
+            }
+
+            function undock() {
+                var pw = opts.dockPane[0][opts.pxSplit];
+                if ( pw ) return;
+                var x={}; x[opts.origin]=bar._pos+"px";
+                bar.removeClass(opts.barDockedClass)
+                    .animate(x,
+                             opts.undockSpeed || opts.dockSpeed || 1,
+                             opts.undockEasing || opts.dockEasing, function() {
+                                 resplit(bar._pos);
+                                 bar._pos = null;
+                             });
+                splitter.trigger("undock" + opts.eventNamespace);
+            }
+
+            function toggleDock() {
+                var pw = opts.dockPane[0][opts.pxSplit];
+                if (pw) {
+                    dock();
+                } else {
+                    undock();
+                }
+                splitter.trigger("toggleDock" + opts.eventNamespace);
+            }
+
             // Docking support
             if (opts.dock) {
 
-                splitter
-                    .bind("toggleDock" + opts.eventNamespace, function () {
-                        var pw = opts.dockPane[0][opts.pxSplit];
-                        splitter.trigger(pw ? "dock" : "undock");
-                    })
-                    .bind("dock" + opts.eventNamespace, function () {
-                        var pw = A[0][opts.pxSplit];
-                        if (!pw ) return;
-                        bar._pos = pw;
-                        var x = {};
-                        x[opts.origin] = opts.dockPane === A ? 0 :
-                            splitter[0][opts.pxSplit] - splitter._PBA - bar[0][opts.pxSplit];
-                        bar.animate(x, opts.dockSpeed||1, opts.dockEasing, function () {
-                            bar.addClass(opts.barDockedClass);
-                            resplit(x[opts.origin]);
-                        });
-                    })
-                    .bind("undock" + opts.eventNamespace, function () {
-                        var pw = opts.dockPane[0][opts.pxSplit];
-                        if (pw) return;
-
-                        var x = {};
-                        x[opts.origin] = bar._pos + "px";
-
-                        bar.removeClass(opts.barDockedClass)
-                            .animate(
-                                x, opts.undockSpeed || opts.dockSpeed || 1,
-                                opts.undockEasing || opts.dockEasing, function () {
-                                    resplit(bar._pos);
-                                    bar._pos = null;
-                                });
-                    });
-
-                if (opts.dockKey )
-                    $('<a title="' + opts.splitbarClass +
-                      ' toggle dock" href="javascript:void(0)"></a>')
-                    .attr({accessKey: opts.dockKey, tabIndex: -1}).appendTo(bar)
-                    .bind($.browser.opera ? "click" : "focus", function () {
-                        splitter.trigger("toggleDock"); this.blur();
-                    });
-
-                bar.bind("dblclick", function () {
-                    splitter.trigger("toggleDock");
+                bar.bind("dblclick", function() {
+                    toggleDock();
                 });
+
+                if ( opts.dockKey )
+                    $('<a title="'+opts.splitbarClass+' toggle dock" href="javascript:void(0)"></a>')
+                    .attr({accessKey: opts.dockKey, tabIndex: -1}).appendTo(bar)
+                    .bind($.browser.opera ? "click" : "focus", function() {
+                        toggleDock(); this.blur();
+                    });
             }
 
 
