@@ -95,3 +95,34 @@
 .markItUpHeader ul a {
   background-position: center;
 }
+
+
+
+/** Pimp default ReST style */
+
+.openerp .oe_form div.oe_form_field_rst2html_readonly .system-message {
+  border: 1px solid #b00;
+  background-color: #f44;
+  color: #111;
+  border-radius: 4px;
+  box-shadow:         4px 4px 6px rgba(0,0,0, 0.3);
+  margin: 10px;
+}
+
+.openerp .oe_form div.oe_form_field_rst2html_readonly .system-message a {
+ color: #220;
+}
+
+.openerp .oe_form div.oe_form_field_rst2html_readonly .system-message tt.docutils {
+  color: #220;
+  border-radius: 2px;
+  background-color: rgba(255,255,255, 0.6);
+  text-shadow: none;
+  font-size: 1em;
+}
+
+.openerp .oe_form div.oe_form_field_rst2html_readonly .system-message .system-message-title{
+  color: black;
+  font-weight: bold;
+  text-shadow: 0px 1px 0 rgba(255,255,255,0.5);
+}
