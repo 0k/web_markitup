@@ -6,9 +6,9 @@ MarkItUp for OpenERP
 Description
 ===========
 
-This OpenERP 7.0 module defines a ``markitup`` FormField widget. Currently
-configured to edit/display ReSTructured Text, but could be easily modified to
-manage any other markup langage.
+This OpenERP 7.0 module defines a ``markitup`` widget for form
+fields. Currently configured to edit/display ReSTructured Text, but could be
+easily modified to manage any other markup langage.
 
 MarkItUp_ is a jQuery plugin allowing to turn any textarea into a markup editor.
 
@@ -23,6 +23,19 @@ ReSTructured text (follow this link to see `an online demo of rsted`_).
 .. _an online demo of rsted: http://rst.ninjs.org/
 
 
+Requirements
+============
+
+Was tested only on OpenERP v7.0
+
+
+Installation
+============
+
+Don't forget to first run ``./autogen.sh`` which will compute ChangeLog and set
+the version of the module. Then, install as any other OpenERP module.
+
+
 Usage
 =====
 
@@ -35,4 +48,13 @@ Modify the XML view definition to add attribute ``widget`` set to
         ...
     </form>
 
+
+Note that 2 other miscellaneous widgets are available:
+
+ - ``pre_html`` is a general purpose widget that displays HTML in a ``<pre>``
+   tag. This is usefull if you which to display your field's content with
+   actual spacing preserved.
+
+ - ``rst2html_readonly`` is a widget that will show the HTML computed version
+   of a field containing RST. It is meant to be used only in readonly modes.
 

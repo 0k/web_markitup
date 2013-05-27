@@ -2,7 +2,7 @@
 
 {
     "name": 'web_markitup',
-    "version": "0.1",
+    "version": "%%short-version%%",
     "depends": ['web'],
     "author": "Valentin LAB <valentin.lab@0k.io>",
     "installable": True,
