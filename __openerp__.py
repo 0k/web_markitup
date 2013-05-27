@@ -4,7 +4,7 @@
     "name": 'web_markitup',
     "version": "%%short-version%%",
     "depends": ['web'],
-    "author": "Valentin LAB <valentin.lab@0k.io>",
+    "author": "Valentin LAB <valentin.lab@kalysto.org>",
     "installable": True,
     "active": False,
     "js": ["static/src/js/*.js",
