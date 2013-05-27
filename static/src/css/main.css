@@ -6,6 +6,9 @@
   border: 0px;
 }
 
+
+/* rst2html_readonly view only mode */
+
 .openerp .oe_form div.oe_form_field_rst2html_readonly.oe_view_only {
   border: 0px solid #ddd;
   box-shadow: 5px 5px 4px 1px #999;
@@ -17,6 +20,7 @@
   margin: 0;
   box-shadow: none;
 }
+
 
 /* Splitter bar */
 
@@ -47,6 +51,7 @@
   display: none;
 }
 
+
 /* Preview pane */
 
 .openerp .oe_form  .oe_preview_pane {
@@ -69,6 +74,7 @@
   border: 1px solid #ddd;
   background: white;
 }
+
 
 /* Markitup Edit pane */
 
@@ -97,8 +103,9 @@
 }
 
 
-
-/** Pimp default ReST style */
+/**
+ * Pimp default ReST style
+ */
 
 .openerp .oe_form div.oe_form_field_rst2html_readonly .system-message {
   border: 1px solid #b00;
