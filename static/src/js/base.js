@@ -1,4 +1,4 @@
-/*global: openerp,window,QWeb,_,mySettings */
+/*global: openerp,window,QWeb,_,mySettings,$ */
 
 
 openerp.web_markitup = function (oe) {
@@ -119,7 +119,10 @@ openerp.web_markitup = function (oe) {
             var value = this._get_raw_value();
             if (_.isEqual(value, this.old_value)) return;
             this.old_value = value;
-            this.set_value(value); // Triggers store_dom_value and dirty state.
+            // Triggers store_dom_value and dirty state.
+            // ``internal`` is required to stop rerendering which
+            // would reset textarea view position to top.
+            this.internal_set_value(value);
             this.rpc('/web_markitup/rst2html', {
                 'source': value
             }).then(function(html_content) {
