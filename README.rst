@@ -26,7 +26,7 @@ ReSTructured text (follow this link to see `an online demo of rsted`_).
 Requirements
 ============
 
-Works on OpenERP v7.0
+Works on OpenERP v7.0 with Linux system.
 
 The ReST to HTML conversion is done thanks to ``docutils`` python package.
 

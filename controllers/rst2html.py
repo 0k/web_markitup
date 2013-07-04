@@ -27,6 +27,11 @@ default_rst_opts = {
     'stylesheet_path': None,
     'traceback': True,
     'halt_level': 5,
+    ## this control both report_level in HTML and on stderr
+    'report_level': 2,
+    ## This introduces incompatibility with other OS, any other
+    ## sensible way to deactivate parser errors to stderr ?
+    'warning_stream': '/dev/null',
 }
 
 ##
