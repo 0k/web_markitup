@@ -26,7 +26,11 @@ ReSTructured text (follow this link to see `an online demo of rsted`_).
 Requirements
 ============
 
-Was tested only on OpenERP v7.0
+Works on OpenERP v7.0
+
+The ReST to HTML conversion is done thanks to ``docutils`` python package.
+
+You'll need to install python package ``pygments`` for code block syntax-highlighting.
 
 
 Installation

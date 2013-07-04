@@ -11,10 +11,11 @@ from docutils.core import publish_string
 
 # see http://docutils.sourceforge.net/docs/user/config.html
 default_rst_opts = {
-    # 'doctype_declaration': False, 
+    # 'doctype_declaration': False,
     # 'xml_declaration': False,
     # 'title': False,
     # 'no_doc_title': False,
+    'syntax_highlight': 'short',
     'no_toc_backlink': True,
     'no_generator': True,
     'no_footnote_backlink': True,
