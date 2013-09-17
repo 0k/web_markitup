@@ -10,4 +10,4 @@ class Home(Controller):
 
     @jsonrequest
     def rst2html(self, req, source, theme=None, opts=None):
-        return rst2html(source, theme, opts)
+        return rst2html(source, theme, opts) if source else ""
