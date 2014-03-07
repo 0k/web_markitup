@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-import sys
 from os.path import join as J
-#import codecs
 
 from docutils.core import publish_string
 
