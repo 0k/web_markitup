@@ -6,7 +6,7 @@ MarkItUp for OpenERP
 Description
 ===========
 
-This OpenERP 7.0 module defines a ``markitup`` widget for form
+This OpenERP 8.0+ module defines a ``markitup`` widget for form
 fields. Currently configured to edit/display ReSTructured Text, but could be
 easily modified to manage any other markup langage.
 
@@ -26,7 +26,7 @@ ReSTructured text (follow this link to see `an online demo of rsted`_).
 Requirements
 ============
 
-Works on OpenERP v7.0 with Linux system.
+Works on OpenERP v8.0+ with Linux system.
 
 The ReST to HTML conversion is done thanks to ``docutils`` python package.
 
