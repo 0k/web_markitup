@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdn=3:
+-->
+<openerp>
+    <data>
+        <template id="assets_backend" name="web_markitup assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/web_markitup/static/lib/js/markit/sets/rest/style.css"/>
+                <link rel="stylesheet" href="/web_markitup/static/lib/js/markit/skins/markitup/style.css"/>
+                <link rel="stylesheet" href="/web_markitup/static/src/css/ReST/basic.css"/>
+                <link rel="stylesheet" href="/web_markitup/static/src/css/ReST/nature/nature.css"/>
+                <link rel="stylesheet" href="/web_markitup/static/src/css/syntax.css"/>
+                <link rel="stylesheet" href="/web_markitup/static/src/css/main.css"/>
+
+                <script type="text/javascript" src="/web_markitup/static/lib/js/splitter/splitter.js"></script>
+                <script type="text/javascript" src="/web_markitup/static/lib/js/markit/sets/rest/set.js"></script>
+                <script type="text/javascript" src="/web_markitup/static/lib/js/markit/jquery.markitup.js"></script>
+                <script type="text/javascript" src="/web_markitup/static/src/js/base.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>
